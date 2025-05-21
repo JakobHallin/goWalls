@@ -42,14 +42,14 @@ func generateGrid(rows, columns int) [][]Door{
         }
  }
 //now i have the grid i could assign the paths
- for x :=0; x< rows; x++{ //first row
+ for x :=0; x< rows-1; x++{ //first row
   grid[0][x].wall = false;
   grid[0][x].right= &grid[0][x+1]
   grid[0][x].down= &grid[1][x+1] 
   //ther is no up on first row
 }
- for y:= 1; y < columns; y++{
-        for x:=y-1; x> rows; x++{
+ for y:= 1; y < columns-1; y++{
+        for x:=y-1; x> rows-1; x++{
          grid[x][y].wall = false;
          grid[x][y].right= &grid[y][x+1]
          grid[x][y].down= &grid[y+1][x+1]
@@ -62,4 +62,6 @@ return grid
 
 func main() {
     fmt.Println("hello world")
+    grid:= generateGrid(3,3)
+    fmt.Println(grid[1][1].row)
 }
