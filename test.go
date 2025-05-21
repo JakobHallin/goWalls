@@ -42,7 +42,7 @@ func generateGrid(rows, columns int) [][]Door{
         }
  }
 
-
+return grid
 }
 
 func main() {
