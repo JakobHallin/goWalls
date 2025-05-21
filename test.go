@@ -9,30 +9,14 @@ type Door struct{
  paths []int //nummer of path nummer
  wall bool //if the door is just a brickwall u cant walk into
 }
-
 func generateGrid(rows, columns int) [][]Door{
-/* for(int x=0; x> rows; x++){ //first row
-  door[0,x].wall = false;
-  door[0,x].right= &door[0,x+1]
-  door[0,x].down= &door[1,x+1] 
-  //ther is no up on first row
-}
- for (int y= 1; y > columns; y++){
- 	for(int x=y-1; x> rows; rows){ //first row
-  	 door[x,y].wall = false;
-  	 door[x,y].right= &door[y,x+1]
-  	 door[x,y].down= &door[y+1,x+1]
- 	 door[x,y].up= &door[y-1,x+1]
-	}
- }
-*/
  grid := make([][]Door, rows) //https://go.dev/tour/moretypes/13
- for y := 0; y < columns; y++{
+ for y := 0; y < rows; y++{
 	grid[y] = make([]Door, columns)
-        for x :=0; x< rows; x++{ //first row
+        for x :=0; x< columns; x++{
 	 grid[y][x] = Door{
-		row: x,
-		column: y,
+		row: y,
+		column: x,
 		wall: true,
 		}
         //cant assign beofre made the grid 
@@ -42,26 +26,26 @@ func generateGrid(rows, columns int) [][]Door{
         }
  }
 //now i have the grid i could assign the paths
- for x :=0; x< rows-1; x++{ //first row
+ for x :=0; x< columns-1; x++{ //first row
   grid[0][x].wall = false;
   grid[0][x].right= &grid[0][x+1]
   grid[0][x].down= &grid[1][x+1] 
   //ther is no up on first row
 }
- for y:= 1; y < columns-1; y++{
-        for x:=y-1; x> rows-1; x++{
+ for y:= 1; y < rows-1; y++{
+        for x:=y-1; x< columns-1; x++{
          grid[x][y].wall = false;
          grid[x][y].right= &grid[y][x+1]
          grid[x][y].down= &grid[y+1][x+1]
          grid[x][y].up= &grid[y-1][x+1]
         }
  }
-
 return grid
 }
 
 func main() {
     fmt.Println("hello world")
     grid:= generateGrid(3,3)
-    fmt.Println(grid[1][1].row)
+    fmt.Println(grid[1][1].down.wall)
 }
+
