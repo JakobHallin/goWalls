@@ -17,7 +17,7 @@ func generateGrid(rows, columns int) [][]Door{
 	 grid[y][x] = Door{
 		row: y,
 		column: x,
-		wall: false,
+		wall: true,
 		}
         //cant assign beofre made the grid 
 	//door[x,y].right= &door[y,x]
@@ -27,7 +27,7 @@ func generateGrid(rows, columns int) [][]Door{
  }
 //now i have the grid i could assign the paths
  for x :=0; x< columns-1; x++{ //first row
-  grid[0][x].wall = false;
+  //grid[0][x].wall = false;
   grid[0][x].right= &grid[0][x+1]
   grid[0][x].down= &grid[1][x+1] 
   //ther is no up on first row
@@ -50,6 +50,8 @@ lastrow := rows - 1
 
 return grid
 }
+//start  point could be ?,? in the grid
+
 
 func printGrid(grid [][]Door){
  for y:= 0; y<len(grid); y++ { //loop over rows
@@ -74,6 +76,14 @@ func main() {
     fmt.Println(grid[2][2].down)
 
     fmt.Println(grid[2][2].down.wall)
+fmt.Println(grid[0][2].down)
+fmt.Println(grid[3][2].down)
+fmt.Println(grid[0][0].down)
+fmt.Println(grid[0][0].up)
+
+
+
+
     fmt.Println(" ")
 
   printGrid(grid)
