@@ -17,7 +17,7 @@ func generateGrid(rows, columns int) [][]Door{
 	 grid[y][x] = Door{
 		row: y,
 		column: x,
-		wall: true,
+		wall: false,
 		}
         //cant assign beofre made the grid 
 	//door[x,y].right= &door[y,x]
@@ -32,20 +32,53 @@ func generateGrid(rows, columns int) [][]Door{
   grid[0][x].down= &grid[1][x+1] 
   //ther is no up on first row
 }
- for y:= 1; y < rows-1; y++{
+ for y:= 1; y < rows - 1; y++{
         for x:=y-1; x< columns-1; x++{
-         grid[x][y].wall = false;
-         grid[x][y].right= &grid[y][x+1]
-         grid[x][y].down= &grid[y+1][x+1]
-         grid[x][y].up= &grid[y-1][x+1]
+         //grid[y][x].wall = false;
+         grid[y][x].right= &grid[y][x+1]
+         grid[y][x].down= &grid[y+1][x+1]
+         grid[y][x].up= &grid[y-1][x+1]
         }
  }
+//last row
+lastrow := rows - 1
+  for x:= 0; x< columns - 1; x++{
+  	//grid[lastrow][x].wall = false;
+         grid[lastrow][x].right= &grid[lastrow][x+1]
+         grid[lastrow][x].up= &grid[lastrow-1][x+1]
+ }
+
 return grid
+}
+
+func printGrid(grid [][]Door){
+ for y:= 0; y<len(grid); y++ { //loop over rows
+    for x:=0; x<len(grid[0]); x++ { //lop over columns
+     	if grid[y][x].wall {
+	 fmt.Print("X ")
+    	} else {
+	 fmt.Print("0 ")
+	}
+    }
+    fmt.Println("")
+  }
 }
 
 func main() {
     fmt.Println("hello world")
-    grid:= generateGrid(3,3)
+    grid:= generateGrid(4,4)
     fmt.Println(grid[1][1].down.wall)
+    fmt.Println(grid[1][1].down)
+
+    fmt.Println(grid[2][2].down)
+    fmt.Println(grid[2][2].down)
+
+    fmt.Println(grid[2][2].down.wall)
+    fmt.Println(" ")
+
+  printGrid(grid)
+
+
 }
+
 
