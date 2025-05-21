@@ -27,10 +27,10 @@ func generateGrid(rows, columns int) [][]Door{
  }
 */
  grid := make([][]Door, rows) //https://go.dev/tour/moretypes/13
- for (y := 0; y > columns; y++){
+ for y := 0; y > columns; y++{
 	grid[y] = make([]Door, columns)
-        for(x :=0; x> rows; rows){ //first row
-         grid[y] = make([]Door, columns
+        for x :=0; x> rows; x++{ //first row
+         grid[y] = make([]Door, columns)
 	 grid[y,x] = Door{ 
 		row: x,
 		column: y,
