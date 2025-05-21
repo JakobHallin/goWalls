@@ -51,6 +51,21 @@ lastrow := rows - 1
 return grid
 }
 //start  point could be ?,? in the grid
+//proposed idea is to use dfs
+//func findPath(startX int , startyY int,grid [][]Door){
+
+//}
+func makePaths(start *Door){
+
+	if start == nil {
+	return 
+	}
+	start.wall= false
+	makePaths(start.right)
+	makePaths(start.down)
+        makePaths(start.up)
+}
+
 
 
 func printGrid(grid [][]Door){
@@ -85,10 +100,11 @@ fmt.Println(grid[0][0].up)
 
 
     fmt.Println(" ")
-
+ makePaths(&grid[0][0])
   printGrid(grid)
 
 
 }
+
 
 
