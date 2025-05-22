@@ -123,7 +123,7 @@ fmt.Println(grid[0][0].up)
   printGrid(grid)
 
 counter := 0
-tracepaths(grid[0][0], *counter, 3)
+tracepaths(&grid[0][0], &counter, 3)
 fmt.Println(grid[3][3])
  
 }
