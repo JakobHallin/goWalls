@@ -53,12 +53,14 @@ return grid
 //start  point could be ?,? in the grid
 //proposed idea is to use dfs
 //func findPath(startX int , startyY int,grid [][]Door){
+need to know the path number and the que and the priority is up then right then down
+
 
 //}
 func makePaths(start *Door){
 
 	if start == nil {
-	return 
+	return
 	}
 	start.wall= false
 	makePaths(start.right)
