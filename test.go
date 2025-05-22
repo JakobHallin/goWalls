@@ -63,7 +63,7 @@ func tracepaths(curent *Door, counter *int, column int){
         //path = append(path, current)
 	if curent.column == column{
 		*counter = *counter + 1	
-		curent.paths.apend(counter)
+		curent.paths = append(counter)
 		return
 	}
 
