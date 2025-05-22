@@ -54,7 +54,7 @@ return grid
 //proposed idea is to use dfs
 //func findPath(startX int , startyY int,grid [][]Door){
 //need to know the path number and the que and the priority is up then right then down
-func tracepaths(curent Door*, counter *int, column int){
+func tracepaths(curent *Door, counter *int, column int){
 	//if curent door is nill or a wall
 	if curent == nil || curent.wall {
         return
@@ -67,9 +67,9 @@ func tracepaths(curent Door*, counter *int, column int){
 		return
 	}
 
- tracepaths(curent.up, counter *int, column int)
- tracepaths(curent.right, counter *int, column int)
- tracepaths(curent.down, counter *int, column int)
+ tracepaths(curent.up, counter, column)
+ tracepaths(curent.right, counter, column)
+ tracepaths(curent.down, counter, column)
 
 }
 
