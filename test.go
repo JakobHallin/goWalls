@@ -150,8 +150,8 @@ func ConnectedPaths(cols int , row int)[][]int{
         
         var allPaths[][]int //will return this
         //need to loop if i have more cols so start at 0,1,2,3 and so on if i have more rows
-        for y:=0; y<cols; y++ { 
-          tracepathsSave(&grid[y][0], nil, &allPaths, cols)
+        for y:=0; y<row; y++ { 
+          tracepathsSave(&grid[y][0], nil, &allPaths, cols-1)
           fmt.Println(" ran connected path")
         }
  return allPaths 
@@ -223,7 +223,7 @@ fmt.Println(grid[0][2])
 fmt.Println(grid[0][1])
 fmt.Println(grid[0][0])
 var res [][]int
-res = ConnectedPaths(4,4)
+res = ConnectedPaths(2,2)
 fmt.Println(len(res))
  
 }
