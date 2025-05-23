@@ -1,4 +1,6 @@
-package testing
+package testing 
+//https://forum.golangbridge.org/t/what-is-a-package-in-golang-official-explanation-glossary/27661/2
+//so they need to be the same and when they are the same they can use the other ones function
 import "fmt"
 import "testing"
 type Door struct{
