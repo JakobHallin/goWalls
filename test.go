@@ -109,9 +109,12 @@ func ConnectedPaths(cols int , row int)[][]int{
 		return [][]int{}
 	}
         grid:= generateGrid(row,cols)
-        makePaths(&grid[0][0])
+        makePaths(&grid[0][0]) //now its always 0,0 need to make it for all
+        //not the best in this case
         
         var allPaths[][]int //will return this
+        //need to loop if i have more cols so start at 0,1,2,3 and so on if i have more rows
+        
         tracepathsSave(&grid[0][0], nil, &allPaths, cols)
         fmt.Println(" ran connected path")
  return allPaths 
