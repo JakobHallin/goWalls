@@ -1,8 +1,7 @@
-package testing 
+package paths //cannot run go run test.go if i remove package main 
 //https://forum.golangbridge.org/t/what-is-a-package-in-golang-official-explanation-glossary/27661/2
 //so they need to be the same and when they are the same they can use the other ones function
 import "fmt"
-import "testing"
 type Door struct{
  row int
  column int
@@ -212,7 +211,7 @@ func TestPathEnumeration(t *testing.T) {
 	}
 }
 */
-func main() {
+/* func main() {
     fmt.Println("hello world")
     grid:= generateGrid(4,4)
     fmt.Println(grid[1][1].down.wall)
@@ -256,6 +255,6 @@ fmt.Println(len(res))
  
 //TestPathEnumeration(grid)
 }
-
+*/
 
 
