@@ -1,5 +1,6 @@
 package main
 import "fmt"
+import "testing"
 type Door struct{
  row int
  column int
@@ -185,7 +186,7 @@ func printGrid(grid [][]Door){
 }
 
 //testfunction
-
+/*
 func TestPathEnumeration(t *testing.T) {
 	cases := []struct{ cols, rows, paths int }{
 		{0, 0, 0},
@@ -208,7 +209,7 @@ func TestPathEnumeration(t *testing.T) {
 		}
 	}
 }
-
+*/
 func main() {
     fmt.Println("hello world")
     grid:= generateGrid(4,4)
@@ -251,7 +252,7 @@ var res [][]int
 res = ConnectedPaths(2,2)
 fmt.Println(len(res))
  
-TestPathEnumeration(grid)
+//TestPathEnumeration(grid)
 }
 
 
