@@ -100,21 +100,19 @@ func tracepathsSave(current *Door, path []*Door, allPaths *[][]int, column int){
         tracepathsSave(current.down, path, allPaths, column)
 
 }
-/*func ConnectedPaths(cols int , row int)[][]int{ 
+func ConnectedPaths(cols int , row int)[][]int{ 
         //empty
-        if cols == 0 || rows == 0 {
+        if cols == 0 || row == 0 {
 		return [][]int{}
 	}
-        grid:= generateGrid(rows,cols)
+        grid:= generateGrid(row,cols)
         makePaths(&grid[0][0])
         
         var allPaths[][]int //will return this
-        for i:=0 i< rows; i++{
+        tracepathsSave(&grid[0][0], nil, &allPaths, cols)
 
-        }
-        
- return [][]
-}*/
+ return allPaths 
+}
 
 //}
 func makePaths(start *Door){
@@ -181,7 +179,7 @@ fmt.Println(grid[0][3])
 fmt.Println(grid[0][2])
 fmt.Println(grid[0][1])
 fmt.Println(grid[0][0])
- 
+ ConnectedPaths(1,4)
 }
 
 
