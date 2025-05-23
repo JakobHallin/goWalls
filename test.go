@@ -31,7 +31,7 @@ func generateGrid(rows, columns int) [][]Door{
   grid[0][x].right= &grid[0][x+1]
   grid[0][x].down= &grid[1][x+1] 
   //ther is no up on first row
-}
+ }
  for y:= 1; y < rows - 1; y++{
         for x:=y-1; x< columns-1; x++{
          //grid[y][x].wall = false;
@@ -39,16 +39,16 @@ func generateGrid(rows, columns int) [][]Door{
          grid[y][x].down= &grid[y+1][x+1]
          grid[y][x].up= &grid[y-1][x+1]
         }
- }
+  }
 //last row
-lastrow := rows - 1
+  lastrow := rows - 1
   for x:= 0; x< columns - 1; x++{
   	//grid[lastrow][x].wall = false;
          grid[lastrow][x].right= &grid[lastrow][x+1]
          grid[lastrow][x].up= &grid[lastrow-1][x+1]
  }
 
-return grid
+ return grid
 }
 //start  point could be ?,? in the grid
 //proposed idea is to use dfs
@@ -72,6 +72,7 @@ func tracepaths(curent *Door, counter *int, column int){
  tracepaths(curent.down, counter, column)
 
 }
+func ConnectedPaths(cols int , row int)[][]{ }
 
 //}
 func makePaths(start *Door){
@@ -114,8 +115,6 @@ fmt.Println(grid[0][2].down)
 fmt.Println(grid[3][2].down)
 fmt.Println(grid[0][0].down)
 fmt.Println(grid[0][0].up)
-
-
 
 
     fmt.Println(" ")
