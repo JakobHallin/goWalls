@@ -29,7 +29,7 @@ func generateGridOpen(rows, columns int) [][]Door{
         for y:= 0; y < rows; y++{
                for x:=0; x< columns-1; x++{
                 //grid[y][x].wall = false;
-                if x < columns-1 { grid[y][x].right= &grid[y][x+1]} 
+                grid[y][x].right= &grid[y][x+1]
                if y < rows - 1 { grid[y][x].down= &grid[y+1][x+1]}
                 if y > 0 { grid[y][x].up= &grid[y-1][x+1]}
                }
@@ -54,7 +54,7 @@ func generateGrid(rows, columns int) [][]Door{
 for y:= 0; y < rows; y++{
         for x:=0; x< columns-1; x++{
          //grid[y][x].wall = false;
-         if x < columns-1 { grid[y][x].right= &grid[y][x+1]} 
+          grid[y][x].right= &grid[y][x+1] 
         if y < rows - 1 { grid[y][x].down= &grid[y+1][x+1]}
          if y > 0 { grid[y][x].up= &grid[y-1][x+1]}
         }
