@@ -70,9 +70,44 @@ func tracepaths(curent *Door, counter *int, column int){
  tracepaths(curent.up, counter, column)
  tracepaths(curent.right, counter, column)
  tracepaths(curent.down, counter, column)
+}
+//will use kinda same logic but not with counter
+func tracepathsSave(current *Door, path []*Door, allPaths *[][]int, cols int){
+	//if curent door is nill or a wall
+	if curent == nil || curent.wall {
+        return
+	}
+        newPath :append([]*Door,path...) // ... inte helt hundra hur detta funkar men antar att det betyder att jag kan ha nill eller ett värde https://go.dev/ref/spec#Passing_arguments_to_..._parameters 
+        //vill kunna ta in all olika vägar antar path.. gör så jag kan gå igenom slice(array) 
+
+	//add curent path
+        //path = append(path, current)
+	if curent.column == column{
+		*counter = *counter + 1	
+		curent.paths = append(curent.paths, *counter)
+		return
+	}
+
+ tracepathsSave(curent.up, counter, column)
+ tracepaths(curent.right, counter, column)
+ tracepaths(curent.down, counter, column)
 
 }
-func ConnectedPaths(cols int , row int)[][]{ }
+func ConnectedPaths(cols int , row int)[][]int{ 
+        //empty
+        if cols == 0 || rows == 0 {
+		return [][]int{}
+	}
+        grid:= generateGrid(rows,cols)
+        makePaths(&grid[0][0])
+        
+        var allPaths[][]int //will return this
+        for i:=0 i< rows; i++{
+
+        }
+        
+ return [][]
+}
 
 //}
 func makePaths(start *Door){
