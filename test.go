@@ -121,10 +121,25 @@ fmt.Println(grid[0][0].up)
     fmt.Println(" ")
  makePaths(&grid[0][0])
   printGrid(grid)
-
+//works but counter is amount of steps
 counter := 0
-tracepaths(&grid[0][0], &counter, 3)
-fmt.Println(grid[3][3])
+tracepaths(&grid[0][0], &counter, 2)
+fmt.Println(grid[0][1])
+
+    fmt.Println(" ")
+
+counter2 := 0
+tracepaths(&grid[0][0], &counter2, 1)
+fmt.Println(grid[0][2])
+fmt.Println(grid[0][1])
+    fmt.Println(" ")
+
+counter3 := 0
+tracepaths(&grid[0][0], &counter3, 3)
+fmt.Println(grid[0][3])
+fmt.Println(grid[0][2])
+fmt.Println(grid[0][1])
+fmt.Println(grid[0][0])
  
 }
 
