@@ -75,6 +75,7 @@ func tracepaths(curent *Door, counter *int, column int){
 func tracepathsSave(current *Door, path []*Door, allPaths *[][]int, column int){
 	//if curent door is nill or a wall
 	if current == nil || current.wall {
+                fmt.Println(" ran to nill or wall")
         return
 	}
         //
@@ -92,12 +93,14 @@ func tracepathsSave(current *Door, path []*Door, allPaths *[][]int, column int){
                         pathNumber = append(pathNumber , test.row*column+test.column)
                 }
 		*allPaths = append(*allPaths, pathNumber)
+                fmt.Println(" last door")
                 return
 	}
-
+        fmt.Println(" walking in to the door")
         tracepathsSave(current.up, path, allPaths, column)
         tracepathsSave(current.right, path, allPaths, column)
         tracepathsSave(current.down, path, allPaths, column)
+        
 
 }
 func ConnectedPaths(cols int , row int)[][]int{ 
@@ -110,7 +113,7 @@ func ConnectedPaths(cols int , row int)[][]int{
         
         var allPaths[][]int //will return this
         tracepathsSave(&grid[0][0], nil, &allPaths, cols)
-
+        fmt.Println(" ran connected path")
  return allPaths 
 }
 
@@ -179,7 +182,8 @@ fmt.Println(grid[0][3])
 fmt.Println(grid[0][2])
 fmt.Println(grid[0][1])
 fmt.Println(grid[0][0])
- ConnectedPaths(1,4)
+ ConnectedPaths(4,4)
+ 
 }
 
 
