@@ -25,10 +25,8 @@ func generateGridOpen(rows, columns int) [][]Door{
                }
         }
        //now i have the grid i could assign the paths
-
         for y:= 0; y < rows; y++{
                for x:=0; x< columns-1; x++{
-                //grid[y][x].wall = false;
                 grid[y][x].right= &grid[y][x+1]
                if y < rows - 1 { grid[y][x].down= &grid[y+1][x+1]}
                 if y > 0 { grid[y][x].up= &grid[y-1][x+1]}
@@ -59,7 +57,6 @@ for y:= 0; y < rows; y++{
          if y > 0 { grid[y][x].up= &grid[y-1][x+1]}
         }
 }
-
  return grid
 }
 //start  point could be ?,? in the grid
@@ -87,17 +84,12 @@ func tracepaths(curent *Door, counter *int, column int){
 func tracepathsSave(current *Door, path []*Door, allPaths *[][]int, column int){
 	//if curent door is nill or a wall
 	if current == nil || current.wall {
-                fmt.Println(" ran to nill or wall")
         return
 	}
-        //
         newPath := append([]*Door{},path...) // ... inte helt hundra hur detta funkar men antar att det betyder att jag kan ha nill eller ett värde https://go.dev/ref/spec#Passing_arguments_to_..._parameters 
         //vill kunna ta in all olika vägar antar path.. gör så jag kan gå igenom slice(array) 
         //curent is the curent dor Iam on so this will make sure can later back track the paths i have gone
         newPath = append(newPath, current)
-
-	//add curent path
-        //path = append(path, current)
 	if current.column == column{
                 //now im on the last cant go more right
                 var pathNumber []int
@@ -105,15 +97,11 @@ func tracepathsSave(current *Door, path []*Door, allPaths *[][]int, column int){
                         pathNumber = append(pathNumber , test.row*column+test.column)
                 }
 		*allPaths = append(*allPaths, pathNumber)
-                fmt.Println(" last door")
                 return
 	}
-        fmt.Println(" walking in to the door")
         tracepathsSave(current.up, path, allPaths, column)
         tracepathsSave(current.right, path, allPaths, column)
         tracepathsSave(current.down, path, allPaths, column)
-        
-
 }
 func ConnectedPaths(cols int , row int)[][]int{ 
         //empty
@@ -131,7 +119,6 @@ func ConnectedPaths(cols int , row int)[][]int{
         //need to loop if i have more cols so start at 0,1,2,3 and so on if i have more rows
         for y:=0; y<row; y++ { 
           tracepathsSave(&grid[y][0], nil, &allPaths, cols-1)
-          fmt.Println(" ran connected path")
         }
  return allPaths 
 }
@@ -147,9 +134,6 @@ func makePaths(start *Door){
 	makePaths(start.down)
         makePaths(start.up)
 }
-
-
-
 func printGrid(grid [][]Door){
  for y:= 0; y<len(grid); y++ { //loop over rows
     for x:=0; x<len(grid[0]); x++ { //lop over columns
