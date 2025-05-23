@@ -25,28 +25,28 @@ func generateGridOpen(rows, columns int) [][]Door{
                }
         }
        //now i have the grid i could assign the paths
-        for x :=0; x< columns-1; x++{ //first row
+     /*   for x :=0; x< columns-1; x++{ //first row
          //grid[0][x].wall = false;
          grid[0][x].right= &grid[0][x+1]
          grid[0][x].down= &grid[1][x+1] 
          //ther is no up on first row
-        }
-        for y:= 1; y < rows - 1; y++{
-               for x:=y-1; x< columns-1; x++{
+        }*/
+        for y:= 0; y < rows; y++{
+               for x:=0; x< columns-1; x++{
                 //grid[y][x].wall = false;
-                grid[y][x].right= &grid[y][x+1]
-                grid[y][x].down= &grid[y+1][x+1]
-                grid[y][x].up= &grid[y-1][x+1]
+                if x < columns-1 { grid[y][x].right= &grid[y][x+1]} 
+               if y < rows - 1 { grid[y][x].down= &grid[y+1][x+1]}
+                if y > 0 { grid[y][x].up= &grid[y-1][x+1]}
                }
          }
-       //last row
+   /*    //last row
          lastrow := rows - 1
          for x:= 0; x< columns - 1; x++{
                  //grid[lastrow][x].wall = false;
                 grid[lastrow][x].right= &grid[lastrow][x+1]
                 grid[lastrow][x].up= &grid[lastrow-1][x+1]
         }
-       
+     */  
         return grid
        }
 
@@ -145,6 +145,8 @@ func ConnectedPaths(cols int , row int)[][]int{
         if cols == 0 || row == 0 {
 		return [][]int{}
 	}
+        //its xbyy but i start with 0 so i need to do -1
+
         grid:= generateGridOpen(row,cols)
         //makePaths(&grid[0][0]) 
         //now its always 0,0 need to make it for all
