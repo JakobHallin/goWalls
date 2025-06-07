@@ -1,4 +1,4 @@
-package paths //cannot run go run test.go if i remove package main 
+package main //cannot run go run test.go if i remove package main 
 //https://forum.golangbridge.org/t/what-is-a-package-in-golang-official-explanation-glossary/27661/2
 //so they need to be the same and when they are the same they can use the other ones function
 import "fmt"
@@ -81,7 +81,7 @@ func tracepaths(curent *Door, counter *int, column int){
  tracepaths(curent.down, counter, column)
 }
 //will use kinda same logic but not with counter
-func tracepathsSave(current *Door, path []*Door, allPaths *[][]int, column int){
+func tracepathsSave(current *Door, path []*Door, allPaths *[][]*Door, column int){
 	//if curent door is nill or a wall
 	if current == nil || current.wall {
         return
@@ -92,21 +92,23 @@ func tracepathsSave(current *Door, path []*Door, allPaths *[][]int, column int){
         newPath = append(newPath, current)
 	if current.column == column{
                 //now im on the last cant go more right
-                var pathNumber []int
+                /*var pathNumber []int
                 for _, test := range newPath {
                         pathNumber = append(pathNumber , test.row*column+test.column)
                 }
 		*allPaths = append(*allPaths, pathNumber)
+                */
+                *allPaths = append(*allPaths, newPath)
                 return
 	}
-        tracepathsSave(current.up, path, allPaths, column)
-        tracepathsSave(current.right, path, allPaths, column)
-        tracepathsSave(current.down, path, allPaths, column)
+        tracepathsSave(current.up, newPath, allPaths, column)
+        tracepathsSave(current.right, newPath, allPaths, column)
+        tracepathsSave(current.down, newPath, allPaths, column)
 }
-func ConnectedPaths(cols int , row int)[][]int{ 
+func ConnectedPaths(cols int , row int)[][]*Door{ 
         //empty
         if cols == 0 || row == 0 {
-		return [][]int{}
+		return [][]*Door{}
 	}
         //its xbyy but i start with 0 so i need to do -1
 
@@ -115,7 +117,7 @@ func ConnectedPaths(cols int , row int)[][]int{
         //now its always 0,0 need to make it for all
         //not the best in this case
         
-        var allPaths[][]int //will return this
+        var allPaths[][]*Door //will return this
         //need to loop if i have more cols so start at 0,1,2,3 and so on if i have more rows
         for y:=0; y<row; y++ { 
           tracepathsSave(&grid[y][0], nil, &allPaths, cols-1)
@@ -146,6 +148,18 @@ func printGrid(grid [][]Door){
     fmt.Println("")
   }
 }
+func printPaths(paths [][]*Door) {
+	for i, path := range paths {
+		fmt.Printf("Path %d: ", i+1)
+		for j, door := range path {
+			if j > 0 {
+				fmt.Print(" -> ")
+			}
+			fmt.Printf("(%d,%d)", door.row, door.column)
+		}
+		fmt.Println()
+	}
+}
 
 //testfunction
 /*
@@ -172,7 +186,7 @@ func TestPathEnumeration(t *testing.T) {
 	}
 }
 */
-/* func main() {
+ func main() {
     fmt.Println("hello world")
     grid:= generateGrid(4,4)
     fmt.Println(grid[1][1].down.wall)
@@ -210,12 +224,12 @@ fmt.Println(grid[0][3])
 fmt.Println(grid[0][2])
 fmt.Println(grid[0][1])
 fmt.Println(grid[0][0])
-var res [][]int
-res = ConnectedPaths(2,2)
+var res [][]*Door
+res = ConnectedPaths(7,5)
 fmt.Println(len(res))
- 
+printPaths(res)
 //TestPathEnumeration(grid)
 }
-*/
+//*/
 
 
